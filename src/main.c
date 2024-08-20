@@ -39,48 +39,46 @@ int setWindowColor(SDL_Renderer* renderer, SDL_Color color) {
 */
 
 int main(void) {
-    /* SDL Init */
-    SDL_Window *window = NULL;
-    SDL_Renderer *renderer = NULL;
-    SDL_Texture* spritsheet = NULL;
-    int statut = EXIT_FAILURE;
+  /* SDL Init */
+  SDL_Window *window = NULL;
+  SDL_Renderer *renderer = NULL;
+  SDL_Texture* spritsheet = NULL;
+  int statut = EXIT_FAILURE;
 
-    if (0 != init(&window, &renderer, 1000, 1000)){
-        goto Quit;
+  if (0 != init(&window, &renderer, 1000, 1000)){
+      goto Quit;
+  }
+
+  SDL_SetWindowTitle(window, "Isometric Game");
+  /* Some Colors */
+  SDL_Color blue_up = {121, 181, 254, 255};
+  SDL_Color blue_right = {169, 216, 248, 255};
+  SDL_Color blue_left = {91, 123, 195, 255};
+  SDL_Color black = {0, 0, 0, 255}; 
+  SDL_Color background = {144, 101, 254, 255};
+  SDL_Color white = {255, 255, 255, 255};
+  SDL_Color lightgray = {205, 209, 219, 255};
+
+  setWindowColor(renderer, background);
+
+  SDL_Event e;
+  int quit = 0;
+  while (!quit) {
+    SDL_RenderClear(renderer);
+    SDL_RenderPresent(renderer);
+     while (SDL_PollEvent(&e)) {
+      if (e.type == SDL_QUIT) {
+        quit = 1;
+      }
     }
-
-    SDL_SetWindowTitle(window, "Isometric Game");
-    /* Some Colors */
-    SDL_Color blue_up = {121, 181, 254, 255};
-    SDL_Color blue_right = {169, 216, 248, 255};
-    SDL_Color blue_left = {91, 123, 195, 255};
-    SDL_Color black = {0, 0, 0, 255}; 
-    SDL_Color background = {144, 101, 254, 255};
-    SDL_Color white = {255, 255, 255, 255};
-    SDL_Color lightgray = {205, 209, 219, 255};
-
-    setWindowColor(renderer, background);
-
-    SDL_Event e;
-    int quit = 0;
-    while (!quit) {
-        SDL_RenderClear(renderer);
-        SDL_RenderPresent(renderer);
-        while (SDL_PollEvent(&e)) {
-            if (e.type == SDL_QUIT) {
-                quit = 1;
-            }
-        }
-    }
+  }
 
 
-    
-
-    Quit:
-      if(NULL != renderer)
-          SDL_DestroyRenderer(renderer);
-      if(NULL != window)
-          SDL_DestroyWindow(window);
-      SDL_Quit();
-    return statut; 
+  Quit:
+    if(NULL != renderer)
+        SDL_DestroyRenderer(renderer);
+    if(NULL != window)
+        SDL_DestroyWindow(window);
+    SDL_Quit();
+  return statut; 
 }
