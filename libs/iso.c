@@ -20,3 +20,13 @@ SDL_Texture* ISO_LoadSheet(const char path[], SDL_Renderer* renderer) {
     return spritesheet;
 
 }
+
+World ISO_GenWorldflat(Tile tile) {
+   World world;
+    for (int x = 0; x < WORLD_HEIGHT; x++) {
+        for (int y = 0; y < WORLD_WIDTH; y++) {
+            world.tiles[x][y] = tile;
+        }
+    }
+    return world;
+}

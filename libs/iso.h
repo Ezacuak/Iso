@@ -10,9 +10,10 @@
 
 /*********************************/
 /*                               */
-/*    Structure pour le jeu      */
+/*    Struct for the Game        */
 /*                               */
 /*********************************/
+
 typedef struct {
     int tx, ty;
 } Texture;
@@ -28,7 +29,7 @@ typedef struct {
 
 /*********************************/
 /*                               */
-/*   Structure pour la logique   */
+/*     Struct for game logic     */
 /*                               */
 /*********************************/
 
@@ -42,12 +43,20 @@ typedef struct {
 
 /*********************************/
 /*                               */
-/*        Drawing Function       */ 
+/*       Drawing Functions       */ 
 /*                               */
 /*********************************/
 
 SDL_Texture* ISO_LoadSheet(const char path[], SDL_Renderer* renderer);
 
 void ISO_DrawWorld(SDL_Renderer* renderer, World world);
+
+/*********************************/
+/*                               */
+/*    Generation Functions       */ 
+/*                               */
+/*********************************/
+
+World ISO_GenWorldflat(Tile tile);
 
 #endif
