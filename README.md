@@ -1,1 +1,1 @@
-A simple isometric game ;)
+A simple isometric game in C with SDL2 ;)
